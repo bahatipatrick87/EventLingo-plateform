@@ -1,26 +1,61 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  --font-sans: var(--font-outfit), sans-serif;
+  --color-primary: #4F46E5;
+  --color-secondary: #8B5CF6;
+  --color-dark: #111827;
+  --color-light: #F3F4F6;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom Utilities */
+.gradient-text {
+  background: linear-gradient(135deg, #4F46E5 0%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-bg {
+  background: radial-gradient(circle at top right, #E0E7FF 0%, transparent 40%),
+    radial-gradient(circle at bottom left, #EDE9FE 0%, transparent 40%);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Scroll Reveal Animation Classes */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-100 {
+  transition-delay: 0.1s;
+}
+
+.reveal-delay-200 {
+  transition-delay: 0.2s;
+}
+
+.reveal-delay-300 {
+  transition-delay: 0.3s;
 }

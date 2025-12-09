@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventLingo - Real-time Multilingual Events</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5', // Indigo 600
+                        secondary: '#8B5CF6', // Violet 500
+                        dark: '#111827',
+                        light: '#F3F4F6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #4F46E5 0%, #8B5CF6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-bg {
+            background: radial-gradient(circle at top right, #E0E7FF 0%, transparent 40%),
+                radial-gradient(circle at bottom left, #EDE9FE 0%, transparent 40%);
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-100 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-delay-200 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal-delay-300 {
+            transition-delay: 0.3s;
+        }
+    </style>
+    <script>
+        // Scroll Reveal Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const elementVisible = 100;
+
+                reveals.forEach((reveal) => {
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveal.classList.add('active');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Trigger once on load
+        });
+    </script>
+</head>
+
+<body class="font-sans text-gray-800 antialiased selection:bg-primary selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span
+                        class="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary tracking-tight">
+                        EventLingo
+                    </span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#" onclick="window.scrollTo(0,0); return false;"
+                        class="text-gray-600 hover:text-primary transition-colors font-medium">Home</a>
+                    <a href="#about" class="text-gray-600 hover:text-primary transition-colors font-medium">About</a>
+                    <a href="#services"
+                        class="text-gray-600 hover:text-primary transition-colors font-medium">Services</a>
+                    <a href="#business-model"
+                        class="text-gray-600 hover:text-primary transition-colors font-medium">Strategy</a>
+                    <a href="#contact"
+                        class="px-6 py-2.5 rounded-full bg-primary text-white font-bold text-sm hover:bg-indigo-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-20 hero-bg relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 text-center md:text-left z-10 reveal">
+                <div
+                    class="inline-block px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-primary font-bold text-sm mb-6 tracking-wide uppercase">
+                    🚀 The Future of Events
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6">
+                    Events Without <br>
+                    <span class="gradient-text">Language Barriers</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-10 max-w-lg mx-auto md:mx-0 leading-relaxed reveal reveal-delay-100">
+                    Empower your international audience with real-time AI translation and captions. Make every voice
+                    heard, in every language.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start reveal reveal-delay-200">
+                    <button
+                        class="px-8 py-4 rounded-full bg-primary text-white font-bold text-lg hover:bg-indigo-700 transition-all shadow-xl hover:shadow-primary/40 transform hover:-translate-y-1">
+                        Try It Now
+                    </button>
+                    <button
+                        class="px-8 py-4 rounded-full bg-white text-gray-800 border border-gray-200 font-bold text-lg hover:border-primary hover:text-primary transition-all shadow-sm transform hover:-translate-y-1">
+                        Watch Demo
+                    </button>
+                </div>
+            </div>
+            <div class="md:w-1/2 mt-16 md:mt-0 relative z-10 w-full reveal reveal-delay-300">
+                <div class="relative w-full max-w-lg mx-auto animate-float">
+                    <div
+                        class="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob">
+                    </div>
+                    <div
+                        class="absolute top-0 -right-4 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000">
+                    </div>
+                    <div
+                        class="relative bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-white/50">
+                        <!-- Mock Interface -->
+                        <div class="flex items-center space-x-2 mb-4 border-b pb-4">
+                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            <span class="ml-2 text-xs text-gray-400 font-mono">live-session.eventlingo.com</span>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0"></div>
+                                <div class="bg-gray-100 p-3 rounded-tr-xl rounded-br-xl rounded-bl-xl w-full">
+                                    <p class="text-sm font-semibold text-gray-800">Speaker (English)</p>
+                                    <p class="text-gray-600">"Welcome everyone to our annual innovation summit."</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xs flex-shrink-0">
+                                    ES</div>
+                                <div
+                                    class="bg-indigo-50 p-3 rounded-tr-xl rounded-br-xl rounded-bl-xl w-full border border-indigo-100">
+                                    <p class="text-sm font-semibold text-primary">Translation (Spanish)</p>
+                                    <p class="text-gray-800">"Bienvenidos a todos a nuestra cumbre anual de innovación."
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-xs flex-shrink-0">
+                                    FR</div>
+                                <div
+                                    class="bg-amber-50 p-3 rounded-tr-xl rounded-br-xl rounded-bl-xl w-full border border-amber-100">
+                                    <p class="text-sm font-semibold text-amber-700">Translation (French)</p>
+                                    <p class="text-gray-800">"Bienvenue à tous à notre sommet annuel sur l'innovation."
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-base text-primary font-semibold tracking-wide uppercase">Introduction</h2>
+                <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Welcome to EventLingo
+                </h3>
+                <p class="mt-4 text-lg text-gray-500">
+                    Our mission is simple: help international students, professionals, and participants fully understand
+                    and engage—no matter what language they speak.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-indigo-500 rounded-full opacity-10">
+                    </div>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        We provide <span class="font-bold text-primary">real-time multilingual captions</span> and
+                        translation tools that allow attendees to follow sessions smoothly and interact confidently.
+                        Whether it’s a conference, workshop, or academic seminar, EventLingo ensures communication flows
+                        naturally for everyone.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="h-12 w-12 rounded-full bg-indigo-100 flex items-center justify-center text-primary text-xl">
+                            🎓</div>
+                        <div>
+                            <p class="font-bold text-gray-900">University of Messina</p>
+                            <p class="text-sm text-gray-500">Born from academic research</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div
+                        class="bg-indigo-600 rounded-2xl p-6 text-white h-48 flex flex-col justify-end transform hover:scale-105 transition-transform">
+                        <span class="text-4xl font-bold mb-2">99%</span>
+                        <span class="text-indigo-100">Accuracy in standard speech</span>
+                    </div>
+                    <div
+                        class="bg-purple-500 rounded-2xl p-6 text-white h-48 flex flex-col justify-end transform hover:scale-105 transition-transform">
+                        <span class="text-4xl font-bold mb-2">50+</span>
+                        <span class="text-purple-100">Languages supported</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-base text-primary font-semibold tracking-wide uppercase">Services</h2>
+                <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    How EventLingo Works
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div
+                    class="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-gray-100 group">
+                    <div
+                        class="w-14 h-14 bg-indigo-100 rounded-lg flex items-center justify-center text-primary mb-6 text-2xl group-hover:bg-primary group-hover:text-white transition-colors">
+                        🎙️
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Real-Time Translation</h4>
+                    <p class="text-gray-500 leading-relaxed">
+                        Instant speech-to-text translation in multiple languages, displaying captions on any device.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-gray-100 group">
+                    <div
+                        class="w-14 h-14 bg-indigo-100 rounded-lg flex items-center justify-center text-primary mb-6 text-2xl group-hover:bg-primary group-hover:text-white transition-colors">
+                        📱
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Simple Access</h4>
+                    <p class="text-gray-500 leading-relaxed">
+                        Join via QR code or link. No app download needed. Works seamlessly in any mobile browser.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-gray-100 group">
+                    <div
+                        class="w-14 h-14 bg-indigo-100 rounded-lg flex items-center justify-center text-primary mb-6 text-2xl group-hover:bg-primary group-hover:text-white transition-colors">
+                        📊
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Organizer Dashboard</h4>
+                    <p class="text-gray-500 leading-relaxed">
+                        Manage languages, customize sessions, and monitor live engagement from one intuitive hub.
+                    </p>
+                </div>
+
+                <!-- Card 4 -->
+                <div
+                    class="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-gray-100 group">
+                    <div
+                        class="w-14 h-14 bg-indigo-100 rounded-lg flex items-center justify-center text-primary mb-6 text-2xl group-hover:bg-primary group-hover:text-white transition-colors">
+                        📈
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Post-Event Insights</h4>
+                    <p class="text-gray-500 leading-relaxed">
+                        Download full transcripts and analyze translation accuracy and audience participation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Model Canvas Section -->
+    <section id="business-model" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-base text-primary font-semibold tracking-wide uppercase">Strategy</h2>
+                <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Business Model Overview
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-gray-50 p-8 rounded-3xl">
+                <!-- Col 1 -->
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h4 class="text-primary font-bold uppercase text-xs tracking-wider mb-2">Key Partners</h4>
+                        <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+                            <li>Universities & Research Labs</li>
+                            <li>Event Tech Providers</li>
+                            <li>Language Service Providers</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h4 class="text-primary font-bold uppercase text-xs tracking-wider mb-2">Key Activities</h4>
+                        <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+                            <li>Platform Development</li>
+                            <li>Event Onboarding</li>
+                            <li>Translation Optimization</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h4 class="text-primary font-bold uppercase text-xs tracking-wider mb-2">Key Resources</h4>
+                        <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+                            <li>AI Speech Tech</li>
+                            <li>Development Team</li>
+                            <li>Academic Data</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Col 2 -->
+                <div class="space-y-6">
+                    <div
+                        class="bg-gradient-to-b from-indigo-600 to-purple-700 p-6 rounded-xl shadow-lg text-white h-full">
+                        <h4 class="font-bold uppercase text-xs tracking-wider mb-4 opacity-80">Value Proposition</h4>
+                        <p class="text-lg font-medium leading-relaxed mb-4">
+                            Making events accessible for everyone through real-time multilingual communication.
+                        </p>
+                        <p class="text-indigo-100 text-sm mb-2">✔ Inclusive tools for all attendees</p>
+                        <p class="text-indigo-100 text-sm mb-2">✔ Improve engagement & understanding</p>
+                        <p class="text-indigo-100 text-sm">✔ Easy implementation for organizers</p>
+                    </div>
+                </div>
+
+                <!-- Col 3 -->
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h4 class="text-primary font-bold uppercase text-xs tracking-wider mb-2">Customer Segments</h4>
+                        <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+                            <li>Universities & Schools</li>
+                            <li>Student Associations</li>
+                            <li>NGOs</li>
+                            <li>Corporate Event Teams</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h4 class="text-primary font-bold uppercase text-xs tracking-wider mb-2">Channels</h4>
+                        <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+                            <li>Direct Website</li>
+                            <li>University Partnerships</li>
+                            <li>Social Media</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h4 class="text-green-600 font-bold uppercase text-xs tracking-wider mb-2">Revenue Streams</h4>
+                        <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+                            <li>Subscriptions (SaaS)</li>
+                            <li>Enterprise Contracts</li>
+                            <li>Per-event Add-ons</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-base text-indigo-400 font-semibold tracking-wide uppercase">Plans</h2>
+                <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight sm:text-4xl">
+                    Flexible Pricing for Every Event
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Free -->
+                <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700 hover:border-gray-600 transition-colors">
+                    <h4 class="text-lg font-bold text-white mb-2">Free</h4>
+                    <p class="text-gray-400 text-sm mb-6">Student Clubs & Basic Needs</p>
+                    <div class="text-3xl font-bold mb-6">$0</div>
+                    <ul class="space-y-3 mb-8 text-sm text-gray-300">
+                        <li class="flex items-center">✨ Limited translations</li>
+                        <li class="flex items-center">✨ 1 Language supported</li>
+                        <li class="flex items-center">✨ Basic captions</li>
+                    </ul>
+                    <a href="#"
+                        class="block w-full py-3 px-4 bg-gray-700 hover:bg-gray-600 text-center rounded-xl font-semibold transition-colors">Select
+                        Plan</a>
+                </div>
+
+                <!-- Standard -->
+                <div
+                    class="bg-gray-800 rounded-2xl p-8 border border-indigo-500 relative transform scale-105 shadow-2xl">
+                    <div
+                        class="absolute top-0 right-0 bg-indigo-500 text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">
+                        POPULAR</div>
+                    <h4 class="text-lg font-bold text-white mb-2">Standard</h4>
+                    <p class="text-gray-400 text-sm mb-6">Mid-size Events</p>
+                    <div class="text-3xl font-bold mb-6">$49<span class="text-sm font-normal text-gray-500">/mo</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 text-sm text-gray-300">
+                        <li class="flex items-center text-white font-medium">✨ Full translation features</li>
+                        <li class="flex items-center">✨ Session transcripts</li>
+                        <li class="flex items-center">✨ Basic Analytics</li>
+                    </ul>
+                    <a href="#"
+                        class="block w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-center rounded-xl font-semibold transition-colors">Get
+                        Standard</a>
+                </div>
+
+                <!-- Premium -->
+                <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700 hover:border-gray-600 transition-colors">
+                    <h4 class="text-lg font-bold text-white mb-2">Premium</h4>
+                    <p class="text-gray-400 text-sm mb-6">Professional Conferences</p>
+                    <div class="text-3xl font-bold mb-6">$199<span class="text-sm font-normal text-gray-500">/mo</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 text-sm text-gray-300">
+                        <li class="flex items-center">✨ Unlimited events</li>
+                        <li class="flex items-center">✨ Multiple languages</li>
+                        <li class="flex items-center">✨ Priority Support</li>
+                    </ul>
+                    <a href="#"
+                        class="block w-full py-3 px-4 bg-gray-700 hover:bg-gray-600 text-center rounded-xl font-semibold transition-colors">Select
+                        Plan</a>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700 hover:border-gray-600 transition-colors">
+                    <h4 class="text-lg font-bold text-white mb-2">Enterprise</h4>
+                    <p class="text-gray-400 text-sm mb-6">Large Organizations</p>
+                    <div class="text-3xl font-bold mb-6">Custom</div>
+                    <ul class="space-y-3 mb-8 text-sm text-gray-300">
+                        <li class="flex items-center">✨ Custom Integration (SoS)</li>
+                        <li class="flex items-center">✨ Dedicated Manager</li>
+                        <li class="flex items-center">✨ Custom SLAs</li>
+                    </ul>
+                    <a href="#"
+                        class="block w-full py-3 px-4 bg-gray-700 hover:bg-gray-600 text-center rounded-xl font-semibold transition-colors">Contact
+                        Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+            <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-indigo-50 blur-3xl opacity-50"></div>
+            <div class="absolute top-1/2 -left-24 w-72 h-72 rounded-full bg-purple-50 blur-3xl opacity-50"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Content -->
+                <div>
+                    <h2 class="text-base text-primary font-semibold tracking-wide uppercase">Get in touch</h2>
+                    <h3 class="mt-2 text-4xl leading-tight font-extrabold tracking-tight text-gray-900 mb-6">
+                        Ready to make your next event <span class="gradient-text">truly inclusive?</span>
+                    </h3>
+                    <p class="text-lg text-gray-500 mb-8 leading-relaxed">
+                        We did love to hear from you! Whether you are a student organization, a university, or a large
+                        conference organizer, EventLingo has a solution for you.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div
+                            class="flex items-center gap-4 p-4 rounded-xl bg-gray-50 border border-gray-100 transform hover:scale-105 transition-transform duration-300">
+                            <div
+                                class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center text-primary text-xl">
+                                📧
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-gray-400 uppercase tracking-widest">Email</p>
+                                <p class="text-lg font-semibold text-gray-900">info@eventlingo.com</p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center gap-4 p-4 rounded-xl bg-gray-50 border border-gray-100 transform hover:scale-105 transition-transform duration-300">
+                            <div
+                                class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center text-primary text-xl">
+                                📍
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-gray-400 uppercase tracking-widest">Location</p>
+                                <p class="text-lg font-semibold text-gray-900">University of Messina</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 sm:p-10">
+                    <form class="space-y-6"
+                        onsubmit="event.preventDefault(); alert('Thank you! This is a demo form.');">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                            <input type="text" name="name" id="name"
+                                class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-3 px-4 bg-gray-50"
+                                placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                            <input type="email" name="email" id="email"
+                                class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-3 px-4 bg-gray-50"
+                                placeholder="john@example.com">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                            <textarea id="message" name="message" rows="4"
+                                class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-3 px-4 bg-gray-50"
+                                placeholder="Tell us about your event..."></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full flex justify-center py-4 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transform hover:-translate-y-0.5 transition-all">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <span class="text-2xl font-bold text-gray-900 mb-4 block">EventLingo</span>
+                    <p class="text-gray-500 max-w-sm mb-6">
+                        Making communication inclusive and boundless. Join us in breaking down language barriers.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-colors">X</a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-colors">in</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>info@eventlingo.com</li>
+                        <li>University of Messina</li>
+                        <li>Italy</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Links</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="#" class="hover:text-primary">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-primary">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-primary">Student Program</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 pt-8 text-center text-gray-500 text-sm">
+                &copy; 2024 EventLingo. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
