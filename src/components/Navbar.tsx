@@ -17,11 +17,10 @@ export default function Navbar() {
                         </span>
                     </div>
                     <div className="hidden md:flex space-x-8 items-center">
-                        <button onClick={scrollToTop} className="text-gray-600 hover:text-primary transition-colors font-medium">Home</button>
-                        <Link href="#about" className="text-gray-600 hover:text-primary transition-colors font-medium">About</Link>
-                        <Link href="#services" className="text-gray-600 hover:text-primary transition-colors font-medium">Services</Link>
-                        <Link href="#business-model" className="text-gray-600 hover:text-primary transition-colors font-medium">Strategy</Link>
-                        <Link href="#contact" className="px-6 py-2.5 rounded-full bg-primary text-white font-bold text-sm hover:bg-indigo-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        <Link href="/" className="text-gray-600 hover:text-primary transition-colors font-medium">Home</Link>
+                        <Link href="/about-us" className="text-gray-600 hover:text-primary transition-colors font-medium">About & Team</Link>
+                        <Link href="/services" className="text-gray-600 hover:text-primary transition-colors font-medium">Services</Link>
+                        <Link href="/about-us#contact" className="px-6 py-2.5 rounded-full bg-primary text-white font-bold text-sm hover:bg-indigo-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
                             Contact Us
                         </Link>
                     </div>

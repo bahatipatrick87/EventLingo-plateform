@@ -30,42 +30,20 @@ export default function Hero() {
                     </div>
                 </div>
                 <div className="md:w-1/2 mt-16 md:mt-0 relative z-10 w-full reveal reveal-delay-300">
-                    <div className="relative w-full max-w-lg mx-auto animate-float">
-                        <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-                        <div className="absolute top-0 -right-4 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-                        <div className="relative bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-white/50">
-                            {/* Mock Interface */}
-                            <div className="flex items-center space-x-2 mb-4 border-b border-gray-200 pb-4">
-                                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                                <span className="ml-2 text-xs text-gray-400 font-mono">live-session.eventlingo.com</span>
-                            </div>
-                            <div className="space-y-4">
-                                <div className="flex items-start gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0"></div>
-                                    <div className="bg-gray-100 p-3 rounded-tr-xl rounded-br-xl rounded-bl-xl w-full">
-                                        <p className="text-sm font-semibold text-gray-800">Speaker (English)</p>
-                                        <p className="text-gray-600">&quot;Welcome everyone to our annual innovation summit.&quot;</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xs flex-shrink-0">
-                                        ES
-                                    </div>
-                                    <div className="bg-indigo-50 p-3 rounded-tr-xl rounded-br-xl rounded-bl-xl w-full border border-indigo-100">
-                                        <p className="text-sm font-semibold text-primary">Translation (Spanish)</p>
-                                        <p className="text-gray-800">&quot;Bienvenidos a todos a nuestra cumbre anual de innovación.&quot;</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-xs flex-shrink-0">
-                                        FR
-                                    </div>
-                                    <div className="bg-amber-50 p-3 rounded-tr-xl rounded-br-xl rounded-bl-xl w-full border border-amber-100">
-                                        <p className="text-sm font-semibold text-amber-700">Translation (French)</p>
-                                        <p className="text-gray-800">&quot;Bienvenue à tous à notre sommet annuel sur l&apos;innovation.&quot;</p>
-                                    </div>
+                    <div className="relative w-full max-w-lg mx-auto">
+                        <div className="absolute top-4 -right-4 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+                        <div className="absolute bottom-4 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+                        <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition-all duration-500">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src="/hero_conference.png"
+                                alt="Conference attendees using EventLingo"
+                                className="w-full h-auto object-cover"
+                            />
+                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                                    <p className="text-white font-medium text-sm">Live Translation Active</p>
                                 </div>
                             </div>
                         </div>
