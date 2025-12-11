@@ -28,9 +28,10 @@ export default function Navbar() {
                         <Image
                             src="/eventlingo-logo.png"
                             alt="EventLingo Logo"
-                            width={50}
-                            height={50}
+                            width={40}
+                            height={40}
                             className="object-contain"
+                            priority
                         />
                         <span className="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary tracking-tight">
                             EventLingo
