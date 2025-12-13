@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
@@ -35,9 +36,9 @@ export default function ServicesPage() {
                         <a href="#features" className="px-8 py-4 bg-primary hover:bg-indigo-600 text-white rounded-full font-bold transition-all shadow-lg hover:shadow-indigo-500/30 transform hover:-translate-y-1">
                             Explore Features
                         </a>
-                        <a href="/about-us#contact" className="px-8 py-4 bg-white dark:bg-white/10 hover:bg-gray-50 dark:hover:bg-white/20 text-gray-900 dark:text-white rounded-full font-bold transition-all border border-gray-200 dark:border-white/10 transform hover:-translate-y-1">
+                        <Link href="/contact" className="px-8 py-4 bg-white dark:bg-white/10 hover:bg-gray-50 dark:hover:bg-white/20 text-gray-900 dark:text-white rounded-full font-bold transition-all border border-gray-200 dark:border-white/10 transform hover:-translate-y-1">
                             Contact Sales
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </section>
@@ -189,10 +190,10 @@ export default function ServicesPage() {
                                 <p className="text-gray-300 text-lg leading-relaxed">Join thousands of event organizers who are already using EventLingo to connect with global audiences.</p>
                             </div>
                             <div className="relative z-10 whitespace-nowrap">
-                                <a href="/about-us#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-900 rounded-xl font-bold hover:bg-gray-50 transition-colors shadow-lg hover:shadow-white/20 transform hover:-translate-y-1">
+                                <Link href="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-900 rounded-xl font-bold hover:bg-gray-50 transition-colors shadow-lg hover:shadow-white/20 transform hover:-translate-y-1">
                                     <span>Contact Sales</span>
                                     <span className="text-xl">→</span>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

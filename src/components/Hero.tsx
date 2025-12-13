@@ -1,9 +1,12 @@
 "use client";
 
+import Link from 'next/link';
+import { useState } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 export default function Hero() {
     useScrollReveal();
+    const [isVideoOpen, setIsVideoOpen] = useState(false);
 
     return (
         <section id="home" className="min-h-screen flex items-center pt-20 hero-bg relative overflow-hidden">
@@ -20,14 +23,18 @@ export default function Hero() {
                         Empower your international audience with real-time AI translation and captions. Make every voice
                         heard, in every language.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start reveal reveal-delay-200">
-                        <button className="px-8 py-4 rounded-full bg-primary text-white font-bold text-lg hover:bg-indigo-700 transition-all shadow-xl hover:shadow-primary/40 transform hover:-translate-y-1">
-                            Try It Now
-                        </button>
-                        <button className="px-8 py-4 rounded-full bg-white text-gray-800 border border-gray-200 font-bold text-lg hover:border-primary hover:text-primary transition-all shadow-sm transform hover:-translate-y-1">
-                            Watch Demo
-                        </button>
-                    </div>
+                    <Link
+                        href="/signup"
+                        className="px-8 py-4 rounded-full bg-primary text-white font-bold text-lg hover:bg-indigo-700 transition-all shadow-xl hover:shadow-primary/40 transform hover:-translate-y-1 inline-block text-center"
+                    >
+                        Try It Now
+                    </Link>
+                    <button
+                        onClick={() => setIsVideoOpen(true)}
+                        className="px-8 py-4 rounded-full bg-white text-gray-800 border border-gray-200 font-bold text-lg hover:border-primary hover:text-primary transition-all shadow-sm transform hover:-translate-y-1 inline-block text-center"
+                    >
+                        Watch Demo
+                    </button>
                 </div>
                 <div className="md:w-1/2 mt-16 md:mt-0 relative z-10 w-full reveal reveal-delay-300">
                     <div className="relative w-full max-w-lg mx-auto">
@@ -50,6 +57,40 @@ export default function Hero() {
                     </div>
                 </div>
             </div>
-        </section>
+
+            {/* Video Modal */}
+            {
+                isVideoOpen && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 transition-opacity duration-300">
+                        <div className="relative w-full max-w-5xl bg-black rounded-2xl overflow-hidden shadow-2xl">
+                            <button
+                                onClick={() => setIsVideoOpen(false)}
+                                className="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/70 rounded-full text-white transition-colors"
+                                aria-label="Close video"
+                            >
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                            <div className="aspect-video w-full">
+                                <video
+                                    src="/video.mp4"
+                                    controls
+                                    autoPlay
+                                    className="w-full h-full object-contain"
+                                >
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        {/* Click outside to close */}
+                        <div
+                            className="absolute inset-0 -z-10"
+                            onClick={() => setIsVideoOpen(false)}
+                        ></div>
+                    </div>
+                )
+            }
+        </section >
     );
 }
