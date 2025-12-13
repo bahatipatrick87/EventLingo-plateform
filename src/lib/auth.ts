@@ -22,3 +22,10 @@ export function verifyToken(token: string): any {
         return null;
     }
 }
+
+export function extractToken(authHeader: string | null): string | null {
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return null;
+    }
+    return authHeader.split(' ')[1];
+}
