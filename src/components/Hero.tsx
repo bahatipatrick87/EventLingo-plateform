@@ -9,11 +9,11 @@ export default function Hero() {
     const [isVideoOpen, setIsVideoOpen] = useState(false);
 
     return (
-        <section id="home" className="min-h-screen flex items-center pt-20 hero-bg relative overflow-hidden">
+        <section id="home" className="min-h-screen flex items-center pt-20 bg-gray-200 dark:bg relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
                 <div className="md:w-1/2 text-center md:text-left z-10 reveal">
-                    <div className="inline-block px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-primary font-bold text-sm mb-6 tracking-wide uppercase">
-                        🚀 The Future of Events
+                    <div className="inline-block px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-gray-700 font-bold text-sm mb-6 tracking-wide uppercase">
+                        The Future of Events
                     </div>
                     <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6">
                         Events Without <br />
@@ -24,14 +24,14 @@ export default function Hero() {
                         heard, in every language.
                     </p>
                     <Link
-                        href="/signup"
-                        className="px-8 py-4 rounded-full bg-primary text-white font-bold text-lg hover:bg-indigo-700 transition-all shadow-xl hover:shadow-primary/40 transform hover:-translate-y-1 inline-block text-center"
+                        href="/sign-up"
+                        className="px-8 py-4 rounded-full bg-primary text-gray-800 font-bold text-lg hover:bg-indigo-700 transition-all shadow-xl hover:shadow-primary/40 transform hover:-translate-y-1 inline-block text-center"
                     >
                         Try It Now
                     </Link>
                     <button
                         onClick={() => setIsVideoOpen(true)}
-                        className="px-8 py-4 rounded-full bg-white text-gray-800 border border-gray-200 font-bold text-lg hover:border-primary hover:text-primary transition-all shadow-sm transform hover:-translate-y-1 inline-block text-center"
+                        className="px-8 py-4 rounded-full bg-blue-500 text-gray-800 border border-gray-200 font-bold text-lg hover:border-primary hover:text-primary transition-all shadow-sm transform hover:-translate-y-1 inline-block text-center"
                     >
                         Watch Demo
                     </button>
@@ -77,6 +77,7 @@ export default function Hero() {
                                     src="/video.mp4"
                                     controls
                                     autoPlay
+                                    muted
                                     className="w-full h-full object-contain"
                                 >
                                     Your browser does not support the video tag.

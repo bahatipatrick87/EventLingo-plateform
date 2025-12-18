@@ -29,7 +29,7 @@ export default function About() {
                             naturally for everyone.
                         </p>
                         <div className="flex items-center gap-4">
-                            <div className="h-12 w-12 rounded-full bg-indigo-100 flex items-center justify-center text-primary text-xl">
+                            <div className="h-12 w-12 rounded-full bg-gray-700 flex items-center justify-center text-primary text-xl">
                                 🎓
                             </div>
                             <div>

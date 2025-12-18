@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { useAuth } from '@/context/AuthContext';
+import { useUser, UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 
 export default function DashboardLayout({
@@ -10,18 +8,7 @@ export default function DashboardLayout({
 }: {
     children: React.ReactNode;
 }) {
-    const { isLoggedIn, user, logout } = useAuth();
-    const router = useRouter();
-
-    useEffect(() => {
-        if (!isLoggedIn) {
-            router.push('/login');
-        }
-    }, [isLoggedIn, router]);
-
-    if (!isLoggedIn) {
-        return null;
-    }
+    const { user } = useUser();
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -48,15 +35,14 @@ export default function DashboardLayout({
 
                         <div className="flex items-center gap-4">
                             <div className="text-right hidden sm:block">
-                                <p className="text-sm font-semibold text-gray-900 dark:text-white">{user?.name}</p>
-                                <p className="text-xs text-gray-500 dark:text-gray-400">{user?.email}</p>
+                                <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                                    {user?.firstName} {user?.lastName}
+                                </p>
+                                <p className="text-xs text-gray-500 dark:text-gray-400">
+                                    {user?.primaryEmailAddress?.emailAddress}
+                                </p>
                             </div>
-                            <button
-                                onClick={logout}
-                                className="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors font-medium"
-                            >
-                                Logout
-                            </button>
+                            <UserButton afterSignOutUrl="/" />
                         </div>
                     </div>
                 </div>

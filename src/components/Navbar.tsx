@@ -3,13 +3,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth, UserButton } from '@clerk/nextjs';
 import { useTheme } from 'next-themes';
 
 export default function Navbar() {
     const [mounted, setMounted] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const { isLoggedIn } = useAuth();
+    const { isSignedIn } = useAuth();
     const { theme, setTheme } = useTheme();
 
     useEffect(() => {
@@ -72,12 +72,15 @@ export default function Navbar() {
                             )}
                         </button>
 
-                        {isLoggedIn ? (
-                            <Link href="/dashboard" className="px-6 py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-bold text-sm hover:shadow-lg transition-all transform hover:-translate-y-0.5">
-                                Dashboard
-                            </Link>
+                        {isSignedIn ? (
+                            <>
+                                <Link href="/dashboard" className="px-6 py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-bold text-sm hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                                    Dashboard
+                                </Link>
+                                <UserButton afterSignOutUrl="/" />
+                            </>
                         ) : (
-                            <Link href="/login" className="px-6 py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-bold text-sm hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                            <Link href="/sign-in" className="px-6 py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-bold text-sm hover:shadow-lg transition-all transform hover:-translate-y-0.5">
                                 Login
                             </Link>
                         )}
@@ -85,6 +88,9 @@ export default function Navbar() {
 
                     {/* Mobile Menu Button */}
                     <div className="md:hidden flex items-center gap-2">
+                        {isSignedIn && (
+                            <UserButton afterSignOutUrl="/" />
+                        )}
                         <button
                             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                             className="p-2.5 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none ring-1 ring-gray-200 dark:ring-gray-700"
@@ -125,12 +131,12 @@ export default function Navbar() {
                             <Link href="/services" onClick={closeMobileMenu} className="text-gray-900 dark:text-gray-100 hover:text-primary dark:hover:text-primary transition-colors font-medium px-4 py-2">Services</Link>
                             <Link href="/contact" onClick={closeMobileMenu} className="text-gray-900 dark:text-gray-100 hover:text-primary dark:hover:text-primary transition-colors font-medium px-4 py-2">Contact</Link>
 
-                            {isLoggedIn ? (
+                            {isSignedIn ? (
                                 <Link href="/dashboard" onClick={closeMobileMenu} className="mx-4 px-6 py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-bold text-sm hover:shadow-lg transition-all text-center">
                                     Dashboard
                                 </Link>
                             ) : (
-                                <Link href="/login" onClick={closeMobileMenu} className="mx-4 px-6 py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-bold text-sm hover:shadow-lg transition-all text-center">
+                                <Link href="/sign-in" onClick={closeMobileMenu} className="mx-4 px-6 py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-bold text-sm hover:shadow-lg transition-all text-center">
                                     Login
                                 </Link>
                             )}
