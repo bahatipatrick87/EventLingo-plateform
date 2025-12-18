@@ -22,7 +22,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+    >
       <html lang="en" suppressHydrationWarning>
         <body
           className={`${outfit.variable} font-sans antialiased text-gray-800 selection:bg-primary selection:text-white`}
